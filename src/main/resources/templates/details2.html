@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Details</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <div class="row justify-content-center">
+	    <div class="col-auto table table-responsive">
+		    <table class="table">
+			<thead>
+			   <th scope="col">Id</th>
+			    <th scope="col">Name</th>
+			    <th scope="col">Email</th>
+			    <th scope="col">Locality</th>
+			    <th scope="col">County name</th> 
+			</thead>
+			<tr th:each="user : ${userList}">
+				<td th:text="${user.getUserId()}"></td>
+				<td th:text="${user.getName()}"></td>
+				<td th:text="${user.getEmail()}"></td>
+				<td th:text="${user.getLocalityName()}"></td>
+				<td th:text="${user.getCountyName()}"></td>
+			</tr>
+		    </table>
+           </div>
+    </div>
+</html>
+
