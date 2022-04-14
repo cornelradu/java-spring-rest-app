@@ -120,7 +120,7 @@ public class MainController {
   @PostMapping(path="/user")
   public @ResponseBody ResponseEntity addNewUser(@RequestHeader("token") String token, @RequestParam String name, @RequestParam String email, @RequestParam String locality_name, @RequestParam String password){
 	if(!this.token.equals(token)){
- 	       return new ResponseEntity(HttpStatus.FORBIDDEN);
+ 	       return new ResponseEntity("Token invalid.", HttpStatus.FORBIDDEN);
     	}
         User user = new User();
         user.setName(name);
@@ -153,7 +153,7 @@ public class MainController {
 		@RequestParam(required=false) String password){
 
 	if(!this.token.equals(token)){
-       		return new ResponseEntity(HttpStatus.FORBIDDEN);
+       		return new ResponseEntity("Token invalid.", HttpStatus.FORBIDDEN);
     	}
         Optional<User> userOptional = userRepository.findById(id);
         if(userOptional.isEmpty()){
@@ -219,7 +219,7 @@ public class MainController {
   @GetMapping(path="/user")
   public @ResponseBody ResponseEntity getAllUsers(@RequestHeader("token") String token) {
     if(!this.token.equals(token)){
-       return new ResponseEntity(HttpStatus.FORBIDDEN);
+       return new ResponseEntity("Token invalid.", HttpStatus.FORBIDDEN);
     }
     return new ResponseEntity(userRepository.findAll(), HttpStatus.OK);
   }
@@ -227,7 +227,7 @@ public class MainController {
   @GetMapping(path="/user", params = "name")
   public @ResponseBody ResponseEntity getUser(@RequestHeader("token") String token, @RequestParam String name) {
     if(!this.token.equals(token)){
-       return new ResponseEntity(HttpStatus.FORBIDDEN);
+       return new ResponseEntity("Token invalid.", HttpStatus.FORBIDDEN);
     }
     return new ResponseEntity(userRepository.findUserByname(name), HttpStatus.OK);
   }
@@ -235,7 +235,7 @@ public class MainController {
   @DeleteMapping(path="/user")
   public @ResponseBody ResponseEntity deleteUser(@RequestHeader("token") String token, @RequestParam Integer id) {
     if(!this.token.equals(token)){
-       return new ResponseEntity(HttpStatus.FORBIDDEN);
+       return new ResponseEntity("Token invalid.", HttpStatus.FORBIDDEN);
     }
     try{
     	userRepository.deleteById(id);
